@@ -46,35 +46,6 @@ void BST::post_order_print(ostream & out, Node * t) {
     out << t->key << " ";
 }
 
-// iterator
-struct BSTIterator {
-    std::vector<string> keys;
-    size_t index;
-    static void in_order(Node *node, std::vector<string> &keys){
-        if (!node) return;
-        in_order(node->left, keys);
-        keys.push_back(node->key);
-        in_order(node->right, keys);
-    }
-    BSTIterator(Node* root) : index(0){in_order(root, keys);}
-    BSTIterator(const std::vector<string>& keys, size_t index)
-        : keys(keys), index(index){}
-    
-    const string & operator*()const{ return keys[index]; }
-    string & operator*(){ return keys[index]; }
-    BSTIterator& operator++(){ ++index; return *this; }
-    BSTIterator operator++(int){ BSTIterator tmp = *this; ++index; return tmp; }
-    BSTIterator& operator--(){ --index; return *this; }
-    BSTIterator operator--(int){ BSTIterator tmp = *this; --index; return tmp; }
-    bool operator==(const BSTIterator &other) const { return index==other.index && keys==other.keys; }
-    bool operator!=(const BSTIterator &other) const { return !(*this == other); }
-    BSTIterator operator+(int n) const{ BSTIterator tmp = *this; tmp.index += n; return tmp; }
-    BSTIterator operator-(int n) const{ BSTIterator tmp = *this; tmp.index -= n; return tmp; }
-    int operator-(const BSTIterator &other) const { return index-other.index; }
-    BSTIterator& operator+=(int n){ index += n; return *this; }
-    BSTIterator& operator-=(int n){ index -= n; return *this; }
-    const string &operator[](int n)const{ return keys[index+n]; }
-};
 
 BSTIterator begin(const BST &tree){ return BSTIterator(tree.root); }
 BSTIterator end(const BST &tree){

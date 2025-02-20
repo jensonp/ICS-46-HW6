@@ -1,6 +1,6 @@
 #ifndef BST_H
 #define BST_H
-
+#include <vector>
 #include <iostream>
 using namespace std;
 
@@ -29,16 +29,15 @@ void destroy(Node* node);
 struct BSTIterator {
     std::vector<string> keys;
     size_t index;
+    BSTIterator() : index(0){}
+    BSTIterator(const std::vector<string>& keys, size_t index) : keys(keys), index(index){}
+    BSTIterator(Node* root) : index(0){in_order(root, keys);}
     static void in_order(Node *node, std::vector<string> &keys){
         if (!node) return;
         in_order(node->left, keys);
         keys.push_back(node->key);
         in_order(node->right, keys);
     }
-    BSTIterator(Node* root) : index(0){in_order(root, keys);}
-    BSTIterator(const std::vector<string>& keys, size_t index)
-        : keys(keys), index(index){}
-    
     const string & operator*()const{ return keys[index]; }
     string & operator*(){ return keys[index]; }
     BSTIterator& operator++(){ ++index; return *this; }
