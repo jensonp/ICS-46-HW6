@@ -1,7 +1,18 @@
 #include "avltree.h"
+#include "bst.h"
+
+AVLTree::iterator AVLTree::begin() const {
+    return BSTIterator(root);
+}
+
+AVLTree::iterator AVLTree::end() const {
+    BSTIterator it(root);
+    it.index = it.keys.size();
+    return it;
+}
+
 
 AVLTree::AVLTree() : BST("AVLTree") { }
-
 void AVLTree::insert(const string& key) {
     if (!find(key)) {
         root = insert_node(root, key);
