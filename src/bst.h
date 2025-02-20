@@ -38,20 +38,27 @@ struct BSTIterator {
         keys.push_back(node->key);
         in_order(node->right, keys);
     }
+    
+    string& operator*() { return keys[index]; }
     const string & operator*()const{ return keys[index]; }
-    string & operator*(){ return keys[index]; }
+    string* operator->() { return &keys[index]; }
+    const string* operator->() const { return &keys[index]; }
+
     BSTIterator& operator++(){ ++index; return *this; }
     BSTIterator operator++(int){ BSTIterator tmp = *this; ++index; return tmp; }
-    BSTIterator& operator--(){ --index; return *this; }
-    BSTIterator operator--(int){ BSTIterator tmp = *this; --index; return tmp; }
     bool operator==(const BSTIterator &other) const { return index==other.index && keys==other.keys; }
     bool operator!=(const BSTIterator &other) const { return !(*this == other); }
+
+    /*
+    BSTIterator& operator--(){ --index; return *this; }
+    BSTIterator operator--(int){ BSTIterator tmp = *this; --index; return tmp; }
     BSTIterator operator+(int n) const{ BSTIterator tmp = *this; tmp.index += n; return tmp; }
     BSTIterator operator-(int n) const{ BSTIterator tmp = *this; tmp.index -= n; return tmp; }
     int operator-(const BSTIterator &other) const { return index-other.index; }
     BSTIterator& operator+=(int n){ index += n; return *this; }
     BSTIterator& operator-=(int n){ index -= n; return *this; }
     const string &operator[](int n)const{ return keys[index+n]; }
+    */
 };
 
 struct BST
