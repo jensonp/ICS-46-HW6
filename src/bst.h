@@ -30,7 +30,7 @@ struct BST
     Node * root;
     const string name;
     int count;
-
+    using iterator = BSTIterator;
     BST(const string & new_name)
         : root(nullptr), name(new_name), count(0) { }
 
