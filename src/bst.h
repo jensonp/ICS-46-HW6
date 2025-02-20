@@ -4,8 +4,9 @@
 #include <iostream>
 using namespace std;
 
-// constexpr int NWORDS = 45;
+//constexpr int NWORDS = 45;
 constexpr int NWORDS = 45392;
+
 
 struct Node
 {
@@ -21,6 +22,8 @@ struct Node
     { }
 
 };
+
+void destroy(Node* node);
 
 struct BST
 {
@@ -63,5 +66,5 @@ void find_all_words(int k, string file_name, BST & L);
 void remove_all_words(int k, string file_name, BST & L);
 void measure_BST(string file_name, BST & L);
 void measure_BSTs(string input_file);
-
+void print_times();
 #endif

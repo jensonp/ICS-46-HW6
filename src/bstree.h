@@ -3,8 +3,7 @@
 
 #include "bst.h"
 
-class BSTree
-    : public BST
+class BSTree : public BST
 {
     static Node * insert_node(Node * t, string key);
     static Node * find_node(Node * t, string key);
