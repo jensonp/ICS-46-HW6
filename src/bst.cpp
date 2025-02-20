@@ -54,7 +54,6 @@ BSTIterator end(const BST &tree){
     return it;
 }
 
-
 // Measurements
 
 void error(string word, string msg) {

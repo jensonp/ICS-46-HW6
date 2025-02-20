@@ -1,4 +1,16 @@
 #include "bstree.h"
+#include "bst.h"
+
+BSTree::iterator BSTree::begin() const {
+    return BSTIterator(root);
+}
+
+BSTree::iterator BSTree::end() const {
+    BSTIterator it(root);
+    it.index = it.keys.size();  // index at end of keys vector
+    return it;
+}
+
 
 BSTree::BSTree() :BST("BSTree"){}
 void BSTree::insert(const string &key){ if(!find(key)){ root = insert_node(root, key); ++count; } }
@@ -29,7 +41,6 @@ Node* BSTree::find_node(Node* t, string key) {
     else if(key < t->key) return find_node(t->left, key);
     else return find_node(t->right, key);
 }
-
 
 Node* BSTree::delete_node(Node* t, string key) {
     if (!t) return t;

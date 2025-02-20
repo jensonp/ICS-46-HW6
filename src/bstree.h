@@ -11,12 +11,17 @@ class BSTree : public BST
     static Node * delete_node(Node * t, string key);
     static int compute_height(Node * t);
 public:
+    using iterator = BSTIterator;
+    
     BSTree();
     void insert(const string & key);
     bool find(const string & key) const;
     void remove(const string & key);
     bool is_empty() const;
     int get_height() const;
+    
+    iterator begin() const;
+    iterator end() const;
 };
 
 #endif
