@@ -2,7 +2,6 @@
 #include "bstree.h"
 #include "avltree.h"
 #include "timer.h"
-#include "timing_data.h" // show the times
 
 #include <vector>
 #include <fstream>
@@ -68,7 +67,6 @@ void insert_all_words(int K, string file_name, BST & L){
     for (string word; (in >> word) && (limit > 0); --limit) {L.insert(word); }
     t.elapsedUserTime(eTime);
     in.close();
-    insertTimes.push_back(eTime);
     cout << "\tI = " << eTime << endl;
 }
 void find_all_words(int K, string file_name, BST & L){
@@ -80,7 +78,6 @@ void find_all_words(int K, string file_name, BST & L){
     for (string word; (in >> word) && (limit > 0); --limit) { L.find(word); }
     t.elapsedUserTime(eTime);
     in.close();
-    findTimes.push_back(eTime);
     cout << "\tF = " << eTime << endl;
 }
 
@@ -93,7 +90,6 @@ void remove_all_words(int K, string file_name, BST & L) {
     for (string word; (in >> word) && (limit > 0); --limit) { L.remove(word); }
     t.elapsedUserTime(eTime);
     in.close();
-    removeTimes.push_back(eTime);
     cout << "\tR = " << eTime << endl;
 }
 
@@ -117,17 +113,4 @@ void measure_BSTs(string input_file) {
     //print_times();
 
 
-}
-void print_times()
-{
-    cout << "\nInsert Times: \n";
-    for(size_t i=0; i<insertTimes.size(); ++i){ cout << insertTimes[i] << endl; }
-    cout << "\nFind Times: \n";
-    for(size_t i=0; i<findTimes.size(); ++i){ cout << findTimes[i] << endl; }
-    cout << "\nRemove Times: \n";
-    for(size_t i=0; i<removeTimes.size(); ++i){ cout << removeTimes[i] << endl; } 
-
-    insertTimes.clear();
-    findTimes.clear();
-    removeTimes.clear();
 }

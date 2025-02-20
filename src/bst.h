@@ -102,5 +102,4 @@ void find_all_words(int k, string file_name, BST & L);
 void remove_all_words(int k, string file_name, BST & L);
 void measure_BST(string file_name, BST & L);
 void measure_BSTs(string input_file);
-void print_times();
 #endif
